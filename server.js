@@ -16,10 +16,10 @@ var passport = require('passport');
 app.use(express.static(__dirname + '/public'));
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended : true}));
-app.use(bodyParser.json());
 
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended : true}));
+app.use(bodyParser.json())
 app.use(session({
 
 	resave: true,
@@ -35,13 +35,13 @@ app.use(flash());
 app.set('view engine', 'ejs');
 app.engine('ejs', engine);
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user');
 app.use(mainRoutes);
 app.use(userRoutes);
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 mongoose.connect(config.database, function(err){
 
