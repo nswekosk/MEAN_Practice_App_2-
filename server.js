@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var config = require('./config/config');
 var User = require('./models/user');
+var Category = require('./models/category');
 var app = express();
 var ejs = require('ejs');
 var engine = require('ejs-mate');
@@ -43,7 +44,17 @@ app.use(function(req, res, next){
 	next();
 
 });
+app.use(function(req, res, next){
 
+	Category.find({}, function(err, categories){
+	
+		if(err) return next(err);
+		res.locals.categories = categories;
+		next();
+
+	});
+
+});
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user');
 var adminRoutes = require('./routes/admin');
