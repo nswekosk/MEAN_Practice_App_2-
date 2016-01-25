@@ -46,8 +46,10 @@ app.use(function(req, res, next){
 
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 app.use(mainRoutes);
 app.use(userRoutes);
+app.use(adminRoutes);
 
 mongoose.connect(config.database, function(err){
 
