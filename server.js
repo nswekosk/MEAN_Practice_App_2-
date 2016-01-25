@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var config = require('./config');
+var config = require('./config/config');
 var User = require('./models/user');
 var app = express();
 var ejs = require('ejs');
@@ -10,6 +10,8 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
+var MongoStore = require('connect-mongo')(session);
+var passport = require('passport');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -22,7 +24,11 @@ app.use(session({
 
 	resave: true,
 	saveUninitialized : true,
-	secret: "Nick-Sweko"
+	secret: config.secretKey,
+	store: new MongoStore({ 
+		url: config.database,
+		autoReconnect: true
+	})
 
 }));
 app.use(flash());
@@ -34,6 +40,8 @@ var userRoutes = require('./routes/user');
 app.use(mainRoutes);
 app.use(userRoutes);
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 mongoose.connect(config.database, function(err){
 
