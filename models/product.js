@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-
+var mongoosastic = require('mongoosastic');
 var Schema = mongoose.Schema;
 
 var ProductSchema = new Schema({
@@ -8,6 +8,16 @@ var ProductSchema = new Schema({
     	name: String,
     	price: Number,
     	image: String
+
+});
+
+ProductSchema.plugin(mongoosastic, {
+
+	hosts: [
+
+		'localhost: 9200'
+
+	]
 
 });
 
