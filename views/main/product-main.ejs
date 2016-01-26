@@ -2,16 +2,29 @@
 
 <div class="jumbotron" id="navbar-gap">
       	<div class="container">
-        	<h1>Shop smart, save big</h1>
-        	<p>Find your favourite Product</p>
-        	<!--<p><a class="btn btn-primary btn-lg" href="#" role="button">Signup &raquo;</a></p>-->
+        	<h1 class="text-center">Find your favorite Product</h1>
+        	<p class="text-center">Search many of Ecommerce's products</p>
+		<div class="row">
+
+			<div class="col-md-6 col-md-offset-3">
+
+				<div class="input-group col-md-12">
+
+					<input type="text" class="form-control input-lg" name="search_term" placeholder="Search for a Product..." id="search">
+					<span class="input-group-btn"><button type="submit" class="btn btn-primary btn-lg"><i class="glyphicon glyphicon-search"></i></span>
+				</div>
+				
+			</div>
+
+		</div>
+        
 	</div>
 </div>
 
 
 <div class="container">
 
-	<div class="row">
+	<div class="row" id="searchResults">
 
 		<% for(var i = 0; i < products.length; i++){ %>
 
