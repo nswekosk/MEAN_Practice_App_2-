@@ -133,7 +133,6 @@ router.get('/products/:id', function(req, res, next){
 	.exec(function(err, products){
 
 		if(err) return next(err);
-		console.log("Sweko");
 		res.render('main/category', {
 
 			products : products
