@@ -14,7 +14,7 @@ module.exports = function(req, res, next){
 
 			if(cart){
 
-				for(var i = 0; i < cart.items.lengt; i++){
+				for(var i = 0; i < cart.items.length; i++){
 
 					total += cart.items[i].quantity;
 

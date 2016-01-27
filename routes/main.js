@@ -165,7 +165,7 @@ router.get('/page/:page', function(req, res, next){
 
 });
 
-router.post('/product/:product-id', function(req, res, next){
+router.post('/product/:product_id', function(req, res, next){
 
 	Cart.findOne({
 

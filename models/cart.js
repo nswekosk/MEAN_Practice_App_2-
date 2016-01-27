@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 
 var CartSchema = new Schema({
 
-	owner: { type: Schema.Types.ObjectId, ref: 'Product'},
+	owner: { type: Schema.Types.ObjectId, ref: 'User'},
 	total : { type: Number, default: 0},
 	items: [{
 
