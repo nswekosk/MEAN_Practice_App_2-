@@ -13,6 +13,7 @@ var cookieParser = require('cookie-parser');
 var flash = require('express-flash');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var cartLength = require('./middleware/middleware');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -44,6 +45,7 @@ app.use(function(req, res, next){
 	next();
 
 });
+app.use(cartLength);
 app.use(function(req, res, next){
 
 	Category.find({}, function(err, categories){
