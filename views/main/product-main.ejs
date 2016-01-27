@@ -1,4 +1,4 @@
-<% layout('layout') %>
+<% layout('layout') -%>
 
 <div class="jumbotron" id="navbar-gap">
       	<div class="container">
@@ -30,7 +30,7 @@
 
 		<div class="col-md-4">
 
-			<a href="/product/<%= products.[i]._id %>"
+			<a href="/product/<%= products[i]._id %>">
 
 				<div class="thumbnail">
 
@@ -58,7 +58,7 @@
 
 			<li>
 
-				<% for(var i = 0; i < pages; i++){ %>
+				<% for(var i = 1; i <= pages; i++){ %>
 
 					<% if(i === 1) { %>
 
@@ -66,9 +66,9 @@
 
 					<% }else{ %>
 
-						<li><a href="/page<%= i %>"><%= i %></a></li>
+						<li><a href="/page/<%= i %>"><%= i %></a></li>
 
-					<% }%>
+					<% } %>
 
 
 				<% } %>

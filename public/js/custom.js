@@ -13,7 +13,7 @@ $(function(){
 				search_term
 
 			},
-			datatype: 'json',
+			dataType: 'json',
 			success: function(json){
 
 				var data = json.hits.hits.map(function(hit){
@@ -38,7 +38,7 @@ $(function(){
 					html += '<div class="caption">';
 
 					html += '<h3>' + data[i]._source.name + '</h3>';
-					html += '<p>' + data[i]._source.category.name + '</h3>';
+					html += '<p>' + data[i]._source.category.name + '</p>';
 					html += '<p>$' + data[i]._source.price + '</p>';
 					html += '</div></div></a></div>';
 
