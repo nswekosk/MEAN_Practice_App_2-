@@ -2,6 +2,7 @@ var router = require('express').Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
 var stripe = require('stripe')('sk_test_5m2kl3MdpsuCPFcXMr4b0U2L');
+var async = require('async');
 
 function paginate(req, res, next){
 
@@ -268,9 +269,81 @@ router.post('/payment', function(req, res, next){
 
 		});
 
-	});
+	}).then(function(charge){
 
-	res.redirect('/profile');
+		async.waterfall([
+
+			function(callback){
+
+				Cart.findOnd({
+
+					owner: req.user._id
+
+				}, function(err, cart){
+
+					callback(err, cart);
+
+				});
+
+			},
+			function(cart, callback){
+
+				User.findOne({
+
+					id: req.user.id
+
+				}, function(err, user){
+
+					if(user){
+
+						for(var i = 0; i < cart.items.length; i++){
+
+							user.history.push({
+
+								item: cart.items[i].item,
+								paid: cart.items[i].price
+
+							});
+
+						}
+
+						user.save(function(err, user){
+
+							if(err) return next(err);
+							callback(err, user);
+
+						});
+
+					}
+
+				});
+
+			},
+			function(user){
+
+				Cart.update({
+
+					owner: user._id
+
+				}, {
+
+					$set: { items: [], total: 0}
+
+				}, function(err, updated){
+
+					if(updated){
+
+						res.redirect('/profile');
+
+					}
+
+				});
+
+			}
+
+		]);
+
+	});
 
 });
 
