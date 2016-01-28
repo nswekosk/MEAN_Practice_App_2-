@@ -25,7 +25,7 @@ router.get('/profile', passportConf.isAuthenticated, function(req, res){
 
 	User.findOne({
 
-		id: req.user._id
+		_id: req.user._id
 
 	})
 	.populate('history.item')

@@ -1,8 +1,9 @@
 var router = require('express').Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
-var stripe = require('stripe')('sk_test_5m2kl3MdpsuCPFcXMr4b0U2L');
+var stripe = require('stripe')(LIVE_SECRET_KEY);
 var async = require('async');
+var User = require('../models/user');
 
 function paginate(req, res, next){
 
@@ -261,7 +262,7 @@ router.post('/payment', function(req, res, next){
 
 		return stripe.charges.create({
 
-			amount: currentCharges;
+			amount: currentCharges,
 
 			currency: 'usd',
 
@@ -275,7 +276,7 @@ router.post('/payment', function(req, res, next){
 
 			function(callback){
 
-				Cart.findOnd({
+				Cart.findOne({
 
 					owner: req.user._id
 
@@ -290,7 +291,7 @@ router.post('/payment', function(req, res, next){
 
 				User.findOne({
 
-					id: req.user.id
+					_id: req.user._id
 
 				}, function(err, user){
 
@@ -331,6 +332,7 @@ router.post('/payment', function(req, res, next){
 
 				}, function(err, updated){
 
+					console.log('Sweko2');
 					if(updated){
 
 						res.redirect('/profile');

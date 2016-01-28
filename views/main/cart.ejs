@@ -1,4 +1,4 @@
-<% layout('layout') %>
+<% layout('layout') -%>
 
 <div class="container">
 
@@ -77,9 +77,9 @@
 
 				<span class="list-group-item">
 
-					<h4>Total: %<span class="totalPrice"><%= foundCart.total %></span></h4>
+					<h4>Total: $<span class="totalPrice"><%= foundCart.total %></span></h4>
 
-					<div class="form-gropu">
+					<div class="form-group">
 
 						<input type="hidden" value="<%= foundCart.item %>">
 
@@ -109,7 +109,7 @@
 						                    <h3 class="panel-title"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Payment Details</h3>
 						                </div>
 						                <div class="panel-body">
-						                    <form role="form" id="payment-form" action="/payment" method="post">
+						                    <form role="form" id="payment-form" action="/payment" method="POST">
 						                    	<input type="hidden" name="stripeMoney" value="<%= foundCart.total %>" >
 						                        <div class="row">
 						                            <div class="col-xs-12">
