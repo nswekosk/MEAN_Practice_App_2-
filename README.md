@@ -4,4 +4,6 @@ Functionality: Salt and hashing, cookie and session based authentication, quick 
 
 Languages, tools, and frameworks: Node, Express, jQuery, MongoDB and Mongoose, ElasticSearch, Stripe, Morgan, and Ejs as the view engine.
 
+In order to make the Stripe payment feature work, you must add your public key to custom.js and the private key to main.js.
+
 Please let me know if you have any questions!
