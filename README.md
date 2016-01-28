@@ -1,7 +1,7 @@
-Summary: This application can authenticate and get users and stories to and from the backend.
+Summary: This application is a working clone of an ecommerce web application. It allows you to get a product by the category that it is in. In addition, it can do instant search as you are typing out the search term. Finally, it allows you to make payments using stripe.
 
-Function: Salt and hashing, cookie and session based authentication, quick search, using payment model Stripe 
+Functionality: Salt and hashing, cookie and session based authentication, quick search, making payments using Stripe 
 
-Languages, tools, and Frameworks: Node, express, jQuery, mongoDB, ElasticSearch, Stripe
+Languages, tools, and frameworks: Node, Express, jQuery, MongoDB and Mongoose, ElasticSearch, Stripe, Morgan, and Ejs as the view engine.
 
 Please let me know if you have any questions!
