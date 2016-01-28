@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Product = require('../models/product');
 var Cart = require('../models/cart');
+var stripe = require('stripe')('sk_test_5m2kl3MdpsuCPFcXMr4b0U2L');
 
 function paginate(req, res, next){
 
@@ -242,6 +243,34 @@ router.post('/remove', function(req, res, next){
 		});
 
 	});
+
+});
+
+router.post('/payment', function(req, res, next){
+
+	var stripeToken = req.body.stripeToken;
+
+	var currentCharges = Math.round((req.body.stripeMoney * 100));
+
+	stripe.customers.create({
+
+		source: stripeToken
+
+	}).then(function(customer){
+
+		return stripe.charges.create({
+
+			amount: currentCharges;
+
+			currency: 'usd',
+
+			customer : customer.id
+
+		});
+
+	});
+
+	res.redirect('/profile');
 
 });
 
