@@ -21,19 +21,20 @@ router.post('/login', passport.authenticate('local-login', {
 
 }));
 
-router.get('/profile', function(req, res){
+router.get('/profile', passportConf.isAuthenticated, function(req, res){
 
 	User.findOne({
 
-		_id: req.user._id
+		id: req.user._id
 
-	}, function(err, user){
+	})
+	.populate('history.item')
+	.exec(function(err, foundUser){
 
 		if(err) return next(err);
+		res.render('accounts/profile', { user: foundUser });
 
-		res.render('accounts/profile', { user : user});
-
-	});
+	});	
 
 });
 
